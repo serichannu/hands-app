@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\TopController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/top', function () {
-    return view('hands/top');
-})->middleware(['auth'])->name('top');
+Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('top');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
