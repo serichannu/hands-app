@@ -18,7 +18,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <a href="login" class="text-xl w-20 h-20 fill-current text-gray-500">
-                    挙手カウンター
+                    <i class="fas fa-hand-paper"></i>挙手カウンター
                 </a>
             </div>
 
