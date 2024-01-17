@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SeatController;
+use App\Http\Controllers\StaticsController;
+use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\TopController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,13 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('top');
-
+Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('top.index');
+Route::get('/top/seat', [SeatController::class, 'index'])->middleware(['auth'])->name('seat.index');
+Route::get('/top/seat/assign', [SeatController::class, 'assign'])->middleware(['auth'])->name('seat.assign');
+Route::get('/top/statics', [StaticsController::class, 'index'])->middleware(['auth'])->name('statics.index');
+Route::get('top/mypage', [MyPageController::class, 'index'])->middleware(['auth'])->name('mypage.index');
+Route::patch('top/mypage/update', [MyPageController::class], 'update')->middleware(['auth'])->name('mypage.update');
+Route::delete('top/mypage/destroy', [MyPageController::class], 'delete')->middleware(['auth'])->name('mypage.destroy');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth'])->name('dashboard');
@@ -31,17 +38,6 @@ Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name(
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
-Route::get('/top/seat', function () {
-    return view('hands/seats/create_seat');
-})->middleware(['auth'])->name('seat');
-
-Route::get('/top/seat/number', function () {
-    return view('hands/seats/number_sorting');
-})->middleware(['auth'])->name('number');
-
-Route::get('/top/aggregation', function () {
-    return view('hands/aggregations/index');
-})->middleware(['auth'])->name('aggregation');
 
 
 require __DIR__.'/auth.php';
