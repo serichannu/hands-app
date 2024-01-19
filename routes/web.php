@@ -23,11 +23,15 @@ Route::get('/', function () {
 });
 
 Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('top.index');
-Route::get('/top/seat', [SeatController::class, 'index'])->middleware(['auth'])->name('seat.index');
-Route::get('/top/seat/assign', [SeatController::class, 'assign'])->middleware(['auth'])->name('seat.assign');
+// routes/web.php
+
+Route::get('/top/seat', [SeatController::class, 'index'])->middleware(['auth'])->name('seats.index');
+Route::post('/top/seat', [SeatController::class, 'generateForm'])->middleware(['auth'])->name('seats.generateForm');
+Route::get('/top/seat/assign', [SeatController::class, 'assignForm'])->middleware(['auth'])->name('seats.assignForm');
+Route::post('/top/seat/assign', [SeatController::class, 'assign'])->middleware(['auth'])->name('seats.assign');
 Route::get('/top/statics', [StaticsController::class, 'index'])->middleware(['auth'])->name('statics.index');
 Route::controller(MyPageController::class)->group(function () {
-    Route::get('top/mypage', 'index')->middleware(['auth'])->name('mypage.index');
+    Route::get('top/mypage', 'index')->middleware(['auth'])->name('mypages.index');
 //     Route::get('top/mypage/edit', 'update')->middleware(['auth'])->name('mypage.update');
 //     Route::put('top/mypage/', '')->middleware(['auth'])->name('mypage.');
 

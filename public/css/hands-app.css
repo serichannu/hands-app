@@ -1,3 +1,20 @@
-#subjectSelector {
+#subjectSelector,
+#rows,
+#columns {
     width: 150px;
+}
+
+#border-box {
+    border: 3px solid #cecece;
+    padding-top: 10px;
+    border-radius: 20px;
+    margin: 30px auto;
+}
+
+.spanTimes {
+    line-height: 100px;
+}
+
+#assignBtn {
+    margin-left: 600px;
 }
