@@ -5,7 +5,7 @@
         <h6 class="mt-3 mb-0">出席番号を割り当ててください。</h6>
 
         <!-- 学生IDの割り当てフォーム -->
-        <form action="{{ route('seats.assign') }}" method="post">
+        <form action="{{ route('seats.assign') }}" method="post" onsubmit="return validateForm()">
             @csrf
             <!-- 生成された席の数の入力欄 -->
             <div class="seat-container mt-3 mb-3">
@@ -38,4 +38,23 @@
             justify-content: center;
         }
     </style>
+    <script>
+        function validateForm() {
+            var selectedNumbers = new Set();
+            var inputs = document.querySelectorAll('[name^="seats["]');
+
+            for (var i = 0; i < inputs.length; i++) {
+                var seatNumber = inputs[i].value;
+                if(seatNumber.trim() !== '') {
+                    if (selectedNumbers.has(seatNumber)) {
+                    alert('番号が重複しています。');
+                    return false;
+                }
+                selectedNumbers.add(seatNumber);
+
+                }
+            }
+            return true;
+        }
+    </script>
 @endsection
