@@ -12,7 +12,8 @@
                 @for ($i = 1; $i <= $totalSeats; $i++)
                 <div class="seat">
                     <label for="seat_{{ $i }}" class="form-label"></label>
-                    <input type="number" class="form-control" id="seat_{{ $i }}" name="seats[{{ $i }}]" required min="1" max="40">
+                    <input type="number" class="form-control" id="seat_{{ $i }}" name="seats[{{ $i }}]" min="1" max="40">
+                    <input type="hidden" name="student_ids[{{ $i }}]" value="{{ $studentsId[$i]?? '' }}">
                 </div>
                 @endfor
             </div>
