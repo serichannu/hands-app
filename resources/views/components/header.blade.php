@@ -11,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-none" href="{{ route('seat.index') }}">
+                    <a class="nav-link text-decoration-none" href="{{ route('seats.index') }}">
                         <i class="fas fa-chair"></i>席替え
                     </a>
                 </li>
@@ -23,7 +23,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-none" href="{{ route('mypage.index') }}">
+                    <a class="nav-link text-decoration-none" href="{{ route('mypages.index') }}">
                         <i class="fas fa-user"></i>マイページ
                     </a>
                 </li>
