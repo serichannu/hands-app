@@ -25,10 +25,10 @@ Route::get('/', function () {
 Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('top.index');
 // routes/web.php
 
-Route::get('/top/seat', [SeatController::class, 'index'])->middleware(['auth'])->name('seats.index');
-Route::post('/top/seat', [SeatController::class, 'generateForm'])->middleware(['auth'])->name('seats.generateForm');
-Route::get('/top/seat/assign', [SeatController::class, 'assignForm'])->middleware(['auth'])->name('seats.assignForm');
-Route::post('/top/seat/assign', [SeatController::class, 'assign'])->middleware(['auth'])->name('seats.assign');
+Route::get('/top/seat', [SeatController::class, 'showSeat'])->middleware(['auth'])->name('seats.index');
+Route::post('/top/seat', [SeatController::class, 'storeSeat'])->middleware(['auth'])->name('storeSeat');
+Route::get('/top/seat/assign/{id}', [SeatController::class, 'showAssign'])->middleware(['auth'])->name('seats.assign');
+Route::post('/top/seat/assign', [SeatController::class, 'storeAssign'])->middleware(['auth'])->name('storeAssign');
 Route::get('/top/statics', [StaticsController::class, 'index'])->middleware(['auth'])->name('statics.index');
 Route::controller(MyPageController::class)->group(function () {
     Route::get('top/mypage', 'index')->middleware(['auth'])->name('mypages.index');
