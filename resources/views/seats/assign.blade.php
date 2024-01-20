@@ -5,7 +5,7 @@
         <h6 class="mt-3 mb-0">出席番号を割り当ててください。</h6>
 
         <!-- 学生IDの割り当てフォーム -->
-        <form action="{{ route('seats.assign') }}" method="post" onsubmit="return validateForm()">
+        <form action="{{ route('storeAssign') }}" method="post" onsubmit="return validateForm()">
             @csrf
             <!-- 生成された席の数の入力欄 -->
             <div class="seat-container mt-3 mb-3">
