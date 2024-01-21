@@ -7,7 +7,7 @@
         <!-- 学生IDの割り当てフォーム -->
         <form action="{{ route('storeAssign') }}" method="post" onsubmit="return validateForm()">
             @csrf
-            <!-- 生成された席の数の入力欄 -->
+            <!-- 生成された席に学生番号を入力する欄 -->
             <div class="seat-container mt-3 mb-3">
                 @for ($i = 1; $i <= $totalSeats; $i++)
                 <div class="seat">
