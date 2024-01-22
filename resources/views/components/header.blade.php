@@ -10,6 +10,13 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link text-decoration-none text-primary" href="{{ route('students.index') }}">
+                        <i class="fas fa-check"></i>出席番号登録
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link text-decoration-none" href="{{ route('seats.index') }}">
                         <i class="fas fa-chair"></i>席替え
@@ -23,7 +30,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-none" href="{{ route('mypages.index') }}">
+                    <a class="nav-link text-decoration-none" href="{{ route('mypage.index') }}">
                         <i class="fas fa-user"></i>マイページ
                     </a>
                 </li>
