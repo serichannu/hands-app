@@ -54,7 +54,6 @@ class SeatController extends Controller
 
     public function storeAssign(Request $request)
     {
-        // $myClass = MyClass::findOrFail($request->input('my_class_id'));
         $myClass = MyClass::where('user_id', '=', Auth::id())->latest()->first();
         $totalSeatNum = $myClass->row * $myClass->column;
         for ($i = 0; $i < $totalSeatNum; $i++) {
