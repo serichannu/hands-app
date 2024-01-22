@@ -4,6 +4,12 @@
 
 @section('content')
 
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="container text-center" id="border-box">
     <h6 class="mt-3 mb-4">座席の配列を入力してください。</h6>
 
