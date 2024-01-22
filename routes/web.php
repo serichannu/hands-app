@@ -4,7 +4,9 @@ use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\StaticsController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TopController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,8 +26,8 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
 Route::get('/top', [TopController::class, 'index'])->name('tops.index');
-// routes/web.php
-
+Route::get('top/student', [StudentController::class, 'index'])->name('students.index');
+Route::post('top/student', [StudentController::class, 'store'])->name('students.store');
 Route::get('/top/seat', [SeatController::class, 'showSeat'])->name('seats.index');
 Route::post('/top/seat', [SeatController::class, 'storeSeat'])->name('seats.store');
 Route::get('/top/seat/assign/{id}', [SeatController::class, 'showAssign'])->name('seats.assign.index');
