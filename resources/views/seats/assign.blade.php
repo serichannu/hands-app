@@ -9,11 +9,15 @@
             @csrf
             <!-- 生成された席に学生番号を入力する欄 -->
             <div class="seat-container mt-3 mb-3">
-                @for ($i = 1; $i <= $totalSeats; $i++)
+                @for ($i = 0; $i < $totalSeatNum; $i++)
                 <div class="seat">
                     <label for="seat_{{ $i }}" class="form-label"></label>
-                    <input type="number" class="form-control" id="seat_{{ $i }}" name="seats[{{ $i }}]" min="1" max="40">
-                    <input type="hidden" name="student_ids[{{ $i }}]" value="{{ $studentsId[$i]?? '' }}">
+                    <input type="hidden"  id="sequence{{ $i }}" name="sequence_{{ $i }}" value="{{ $i }}">
+                    <select name="student_id_{{ $i }}" id="">
+                        @foreach ($students as $student)
+                            <option value="{{ $student->id }}">{{ $student->number }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 @endfor
             </div>
