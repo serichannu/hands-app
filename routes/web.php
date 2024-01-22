@@ -21,20 +21,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
+Route::middleware('auth')->group(function () {
 
-Route::get('/top', [TopController::class, 'index'])->middleware(['auth'])->name('tops.index');
+Route::get('/top', [TopController::class, 'index'])->name('tops.index');
 // routes/web.php
 
-Route::get('/top/seat', [SeatController::class, 'showSeat'])->middleware(['auth'])->name('seats.index');
-Route::post('/top/seat', [SeatController::class, 'storeSeat'])->middleware(['auth'])->name('storeSeat');
-Route::get('/top/seat/assign/{id}', [SeatController::class, 'showAssign'])->middleware(['auth'])->name('seats.assign');
-Route::post('/top/seat/assign/{id}', [SeatController::class, 'storeAssign'])->middleware(['auth'])->name('storeAssign');
-Route::get('/top/statics', [StaticsController::class, 'index'])->middleware(['auth'])->name('statics.index');
+Route::get('/top/seat', [SeatController::class, 'showSeat'])->name('seats.index');
+Route::post('/top/seat', [SeatController::class, 'storeSeat'])->name('seats.store');
+Route::get('/top/seat/assign/{id}', [SeatController::class, 'showAssign'])->name('seats.assign.index');
+Route::post('/top/seat/assign/{id}', [SeatController::class, 'storeAssign'])->name('seats.assign.store');
+Route::get('/top/statics', [StaticsController::class, 'index'])->name('statics.index');
 Route::controller(MyPageController::class)->group(function () {
-    Route::get('top/mypage', 'index')->middleware(['auth'])->name('mypages.index');
-//     Route::get('top/mypage/edit', 'update')->middleware(['auth'])->name('mypage.update');
-//     Route::put('top/mypage/', '')->middleware(['auth'])->name('mypage.');
+    Route::get('top/mypage', 'index')->name('mypage.index');
+//     Route::get('top/mypage/edit', 'update')->name('mypage.update');
+//     Route::put('top/mypage/', '')->name('mypage.');
 
+});
 });
 
 
