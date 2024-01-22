@@ -14,6 +14,7 @@
                     <label for="seat_{{ $i }}" class="form-label"></label>
                     <input type="hidden"  id="sequence{{ $i }}" name="sequence_{{ $i }}" value="{{ $i }}">
                     <select name="student_id_{{ $i }}" id="">
+                        <option value=""></option>
                         @foreach ($students as $student)
                             <option value="{{ $student->id }}">{{ $student->number }}</option>
                         @endforeach
@@ -42,23 +43,32 @@
             justify-content: center;
         }
     </style>
-    <script>
-        function validateForm() {
-            var selectedNumbers = new Set();
-            var inputs = document.querySelectorAll('[name^="seats["]');
+<script>
+    function validateForm() {
+        var selectedNumbers = new Set();
+        var selects = document.querySelectorAll('select[name^="student_id_"]');
 
-            for (var i = 0; i < inputs.length; i++) {
-                var seatNumber = inputs[i].value;
-                if(seatNumber.trim() !== '') {
-                    if (selectedNumbers.has(seatNumber)) {
+        var allEmpty = true;  // すべてのセレクトボックスが空欄かどうかのフラグ
+
+        for (var i = 0; i < selects.length; i++) {
+            var seatNumber = selects[i].value;
+
+            if (seatNumber.trim() !== '') {
+                allEmpty = false;  // 少なくとも1つのセレクトボックスが選択されている
+                if (selectedNumbers.has(seatNumber)) {
                     alert('番号が重複しています。');
                     return false;
                 }
                 selectedNumbers.add(seatNumber);
-
-                }
             }
-            return true;
         }
-    </script>
+
+        if (allEmpty) {
+            alert('少なくとも1つの学生を選択してください。');
+            return false;
+        }
+
+        return true;
+    }
+</script>
 @endsection
