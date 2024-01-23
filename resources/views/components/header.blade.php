@@ -12,7 +12,7 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link text-decoration-none text-primary" href="{{ route('students.index') }}">
+                    <a class="nav-link text-decoration-none text-primary" href="{{ route('students.create') }}">
                         <i class="fas fa-check"></i>出席番号登録
                     </a>
                 </li>
