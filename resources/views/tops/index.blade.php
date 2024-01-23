@@ -14,11 +14,18 @@
                     <option value="{{ $subject->name }}">{{ $subject->name }}</option>
                 @endforeach
             </select>
+
         </div>
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
             </div>
+        @endif
+
+        @if (session('error_message'))
+        <div class="alert alert-danger">
+            {{ session('error_message') }}
+        </div>
         @endif
     </div>
 
