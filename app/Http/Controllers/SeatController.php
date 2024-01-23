@@ -27,7 +27,7 @@ class SeatController extends Controller
         $myClass->user_id = Auth::id();
         $myClass->save();
 
-        return redirect()->route('seats.assign', ['id' => $myClass->id])->with([
+        return redirect()->route('seats.assign.index', ['id' => $myClass->id])->with([
             'totalSeats' => $totalSeats,
             'columns' => $columns,
             'rows' => $rows,
