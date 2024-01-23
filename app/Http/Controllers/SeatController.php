@@ -40,14 +40,12 @@ class SeatController extends Controller
         $totalSeatNum = $myClass->row * $myClass->column;
 
         $students = Student::where('user_id', '=', Auth::id())->get();
-        // $studentsId = $students->pluck('number')->toArray();
 
 
         return view('seats.assign', [
             'totalSeatNum' => $totalSeatNum,
             'rows' => $myClass->row,
             'columns' => $myClass->column,
-            // 'studentsId' => $studentsId,
             'students' => $students,
         ]);
     }
