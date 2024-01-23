@@ -26,13 +26,23 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
 
 Route::get('/top', [TopController::class, 'index'])->name('tops.index');
-Route::get('top/student', [StudentController::class, 'index'])->name('students.index');
-Route::post('top/student', [StudentController::class, 'store'])->name('students.store');
-Route::get('/top/seat', [SeatController::class, 'showSeat'])->name('seats.index');
-Route::post('/top/seat', [SeatController::class, 'storeSeat'])->name('seats.store');
-Route::get('/top/seat/assign/{id}', [SeatController::class, 'showAssign'])->name('seats.assign.index');
-Route::post('/top/seat/assign/', [SeatController::class, 'storeAssign'])->name('seats.assign.store');
+
+Route::controller(StudentController::class)->group(function () {
+    Route::get('top/student',  'create')->name('students.create');
+    Route::post('top/student',  'store')->name('students.store');
+    // Route::get('top/student/edit/', 'edit')->name('students.edit');
+    // Route::patch('top/student/', 'update')->name('students.update');
+});
+
+Route::controller(SeatController::class,)->group(function () {
+    Route::get('/top/seat', 'showSeat')->name('seats.index');
+    Route::post('/top/seat', 'storeSeat')->name('seats.store');
+    Route::get('/top/seat/assign/{id}', 'showAssign')->name('seats.assign.index');
+    Route::post('/top/seat/assign/', 'storeAssign')->name('seats.assign.store');
+});
+
 Route::get('/top/statics', [StaticsController::class, 'index'])->name('statics.index');
+
 Route::controller(MyPageController::class)->group(function () {
     Route::get('top/mypage', 'index')->name('mypage.index');
 //     Route::get('top/mypage/edit', 'update')->name('mypage.update');
