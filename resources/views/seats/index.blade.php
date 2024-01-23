@@ -15,7 +15,7 @@
 
 
     <!-- 縦×横のフォーム -->
-    <form action="{{ route('storeSeat') }}" method="post" class="form-inline">
+    <form action="{{ route('seats.store') }}" method="post" class="form-inline">
         @csrf
         <div class="d-flex justify-content-center">
             <div class="me-3">
