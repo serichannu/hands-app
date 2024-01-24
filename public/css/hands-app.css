@@ -18,3 +18,12 @@
 #assignBtn {
     margin-left: 600px;
 }
+
+#num {
+    width: 30%;
+}
+
+#trash {
+    width: 20%;
+    text-align: center;
+}
