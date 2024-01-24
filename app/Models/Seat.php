@@ -9,11 +9,11 @@ class Seat extends Model
 {
     use HasFactory;
 
-    public function my_classes() {
+    public function my_class() {
         return $this->belongsTo(MyClass::class);
     }
 
-    public function students() {
+    public function student() {
         return $this->belongsTo(Student::class);
     }
 }

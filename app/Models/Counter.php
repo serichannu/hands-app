@@ -10,11 +10,11 @@ class Counter extends Model
 {
     use HasFactory;
 
-    public function students() {
+    public function student() {
         return $this->belongsTo(Student::class);
     }
 
-    public function subjects() {
+    public function subject() {
         return $this->belongsTo(Subject::class);
     }
 }
