@@ -48,6 +48,26 @@
         </div>
     </div>
 
+    {{-- 座席情報 --}}
+    <div class="container mb-3">
+        <table>
+            @for ($r = 0; $r < $myClass->row; $r++)
+                <tr>
+                    @for ($c = 0; $c < $myClass->column; $c++)
+                        @php
+                            $seq = $r * $myClass->column + $c;
+                        @endphp
+                        <td>
+                            @if (isset($sequencedSeats[$seq]))
+                                {{ $sequencedSeats[$seq]->student->number }}
+                            @endif
+                        </td>
+                    @endfor
+                </tr>
+            @endfor
+        </table>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Flatpickr
