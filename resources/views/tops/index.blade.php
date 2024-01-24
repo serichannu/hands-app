@@ -57,9 +57,15 @@
                         @php
                             $seq = $r * $myClass->column + $c;
                         @endphp
-                        <td>
+                        <td class="mt-2">
                             @if (isset($sequencedSeats[$seq]))
-                                {{ $sequencedSeats[$seq]->student->number }}
+                                出席番号：{{ $sequencedSeats[$seq]->student->number }}
+                                {{-- カウンター --}}
+                                <div class="counter-container mt-2 mb-2">
+                                    <button class="btn btn-primary" onclick="incrementCounter({{ $sequencedSeats[$seq]->student->id }})">+</button>
+                                    <span id="counter{{ $sequencedSeats[$seq]->student->id }}">0</span>
+                                    <button class="btn btn-danger pr-1" onclick="decrementCounter({{ $sequencedSeats[$seq]->student->id }})">-</button>
+                                </div>
                             @endif
                         </td>
                     @endfor
@@ -93,5 +99,20 @@
                 document.getElementById('selectedSubject').textContent = selectedSubject;
             });
         });
+
+        // カウントアップ
+        function incrementCounter(studentId) {
+        var counterElement = document.getElementById('counter' + studentId);
+        var currentCount = parseInt(counterElement.innerText);
+        counterElement.innerText = currentCount + 1;
+    }
+        // カウントダウン
+        function decrementCounter(studentId) {
+            var counterElement = document.getElementById('counter' + studentId);
+            var currentCount = parseInt(counterElement.innerText);
+            if (currentCount > 0) {
+                counterElement.innerText = currentCount - 1;
+            }
+        }
     </script>
 @endsection
