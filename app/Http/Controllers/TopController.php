@@ -13,8 +13,11 @@ class TopController extends Controller
 {
     public function index() {
         $subjects = Subject::all();
+
         // 最新のクラス情報を取得
         $myClass = MyClass::where('user_id', '=', Auth::id())->latest()->first();
+
+        if ($myClass) {
 
         // ↑で取得した最新のクラス情報に紐づく座席情報を取得
         $seats = Seat::where('my_class_id', '=', $myClass->id)->with('student')->get();
@@ -26,6 +29,12 @@ class TopController extends Controller
         }
 
         return view('tops.index', compact('subjects', 'myClass', 'sequencedSeats'));
+
+        } else {
+            $message = '出席番号登録と席替えから座席の登録をしてください。';
+            return view('tops.index', compact('subjects', 'myClass', 'message'));
+
+        }
     }
 
 

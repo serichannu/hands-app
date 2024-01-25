@@ -49,6 +49,8 @@
     </div>
 
     {{-- 座席情報 --}}
+
+    @if ($myClass)
     <div class="container mb-3">
         <table>
             @for ($r = 0; $r < $myClass->row; $r++)
@@ -62,9 +64,9 @@
                                 出席番号：{{ $sequencedSeats[$seq]->student->number }}
                                 {{-- カウンター --}}
                                 <div class="counter-container mt-2 mb-2">
-                                    <button class="btn btn-primary" onclick="incrementCounter({{ $sequencedSeats[$seq]->student->id }})">+</button>
+                                    <button class="btn btn-primary" id="countUp" onclick="incrementCounter({{ $sequencedSeats[$seq]->student->id }})">＋</button>
                                     <span id="counter{{ $sequencedSeats[$seq]->student->id }}">0</span>
-                                    <button class="btn btn-danger pr-1" onclick="decrementCounter({{ $sequencedSeats[$seq]->student->id }})">-</button>
+                                    <button class="btn btn-danger" id="countDown" onclick="decrementCounter({{ $sequencedSeats[$seq]->student->id }})">－</button>
                                 </div>
                             @endif
                         </td>
@@ -73,6 +75,13 @@
             @endfor
         </table>
     </div>
+    @else
+    <div class="container">
+        <div class="alert alert-success">
+            {{ $message }}
+        </div>
+    </div>
+    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
