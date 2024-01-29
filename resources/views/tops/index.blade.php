@@ -64,9 +64,23 @@
                                 出席番号：{{ $sequencedSeats[$seq]->student->number }}
                                 {{-- カウンター --}}
                                 <div class="counter-container mt-2 mb-2">
-                                    <button class="btn btn-primary" id="countUp" onclick="incrementCounter({{ $sequencedSeats[$seq]->student->id }})">＋</button>
-                                    <span id="counter{{ $sequencedSeats[$seq]->student->id }}">0</span>
-                                    <button class="btn btn-danger" id="countDown" onclick="decrementCounter({{ $sequencedSeats[$seq]->student->id }})">－</button>
+                                    <form action="{{ route('increment-counter') }}" method="POST" style="display: inline">
+                                        @csrf
+                                        <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
+                                        <input type="hidden" name="value" value="1">
+                                        <button class="btn btn-primary" id="countUp" type="submit">＋</button>
+                                    </form>
+
+                                    <span id="counter{{ $sequencedSeats[$seq]->student->id }}">
+                                        {{ session('counter_' . $sequencedSeats[$seq]->student->id, 0) }}
+                                    </span>
+
+                                    <form action="{{ route('decrement-counter') }}" method="POST" style="display: inline">
+                                        @csrf
+                                        <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
+                                        <input type="hidden" name="value" value="-1">
+                                        <button class="btn btn-danger" id="countDown" type="submit">－</button>
+                                    </form>
                                 </div>
                             @endif
                         </td>
@@ -109,19 +123,5 @@
             });
         });
 
-        // カウントアップ
-        function incrementCounter(studentId) {
-        var counterElement = document.getElementById('counter' + studentId);
-        var currentCount = parseInt(counterElement.innerText);
-        counterElement.innerText = currentCount + 1;
-    }
-        // カウントダウン
-        function decrementCounter(studentId) {
-            var counterElement = document.getElementById('counter' + studentId);
-            var currentCount = parseInt(counterElement.innerText);
-            if (currentCount > 0) {
-                counterElement.innerText = currentCount - 1;
-            }
-        }
     </script>
 @endsection

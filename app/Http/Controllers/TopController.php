@@ -38,13 +38,28 @@ class TopController extends Controller
     }
 
 
-    public function store(Request $request) {
+    public function incrementCounter(Request $request) {
+        $studentId = $request->input('student_id');
+        $value = $request->input('value');
 
-    //     $counter = new Counter();
-    //     $counter->student_id = ;
-    //     $counter->subject_id = ;
-    //     $counter->date
+        // 仮のセッションキーを使用してセッション内にカウンターを保存する例
+        $counterKey = 'counter_' . $studentId;
 
-    // }
+        $counter = $request->session()->get($counterKey, 0);
+        $request->session()->put($counterKey, $counter + $value);
+        return redirect()->back();
+
+    }
+
+    public function decrementCounter(Request $request) {
+        $studentId = $request->input('student_id');
+        $value = $request->input('value');
+        // 仮のセッションキーを使用してセッション内にカウンターを保存する例
+        $counterKey = 'counter_' . $studentId;
+
+        $counter = $request->session()->get($counterKey, 0);
+        $request->session()->put($counterKey, max(0, $counter - abs($value)));
+        return redirect()->back();
+
     }
 }
