@@ -4,13 +4,6 @@
 <div class="container mb-1 mt-2">
     <div class="d-flex align-items-center">
         <p class="mt-3" id="currentDate">{{ now()->toDateString() }}</p>
-        <p class="mt-3 ms-3">教科：</p>
-        {{-- 教科情報の表示 --}}
-        @if(isset($selectedSubject))
-            <p class="mt-3 ms-1">{{ $selectedSubject->name }}</p>
-        @else
-            <p class="mt-3 ms-1">未選択</p>
-        @endif
 
         {{-- セレクタとボタンを横並びにするコンテナ --}}
         <div class="d-flex align-items-center ms-3">
@@ -100,12 +93,4 @@
             </div>
         </div>
     @endif
-
-    {{-- <script>
-            // セレクタ
-            document.getElementById('subjectSelector').addEventListener('change', function () {
-                let selectedSubject = this.value;
-                document.getElementById('selectedSubject').textContent = selectedSubject;
-            });
-    </script> --}}
 @endsection
