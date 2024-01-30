@@ -9,7 +9,7 @@ use Mockery\Matcher\Subset;
 class Counter extends Model
 {
     use HasFactory;
-
+    protected $fillable = ['student_id', 'subject_id', 'date', 'count'];
     public function student() {
         return $this->belongsTo(Student::class);
     }

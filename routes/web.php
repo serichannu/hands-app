@@ -26,8 +26,7 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::controller(TopController::class)->group(function () {
         Route::get('/top', 'index')->name('tops.index');
-        Route::post('/top/increment-counter', 'incrementCounter')->name('increment-counter');
-        Route::post('/top/decrement-counter', 'decrementCounter')->name('decrement-counter');
+        Route::post('/top/change-counter', 'changeCounter')->name('change-counter');
     });
 
     Route::resource('students', StudentController::class)->only(['create', 'store', 'destroy']);

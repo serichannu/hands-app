@@ -53,3 +53,7 @@ td {
     font-weight: bold;
     padding: 0;
 }
+#submitButton {
+    display: flex;
+    align-items: center;
+}
