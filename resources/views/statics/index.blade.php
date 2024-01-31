@@ -2,6 +2,27 @@
 
 @section('content')
     <div class="container mt-2">
+        <form class="mb-3">
+            <div class="d-flex align-items-center">
+                <!-- 教科選択 -->
+                <p class="me-2 mt-3">教科選択：</p>
+                <div class="me-2">
+                    <select name="selectedSubject" id="subjectSelector" class="form-select">
+                        <option value="">すべての教科</option>
+                        @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}"
+                                @if ($subject->id == $selectedSubject)
+                                    selected
+                                @endif>{{ $subject->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- 検索ボタン -->
+                <button type="submit" class="btn btn-primary">検索</button>
+            </div>
+        </form>
+
         <table class="table">
             <thead>
                 <tr>

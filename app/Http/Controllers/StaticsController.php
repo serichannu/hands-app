@@ -11,14 +11,21 @@ use Illuminate\Support\Facades\DB;
 
 class StaticsController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $counterData = Counter::select('subject_id', 'student_id', 'date', DB::raw('SUM(count) as total_count'))
         ->groupBy('subject_id', 'student_id', 'date')
         ->get();
-        $students = Student::all();
+        $studentsQuery = Student::query();
         $subjects = Subject::all();
 
+        $searchTerm = $request->input('search');
+        $selectedSubject = $request->input('selectedSubject');
 
-        return view('statics.index', compact('counterData', 'students', 'subjects'));
+        if ($searchTerm) {
+            $studentsQuery->where('number', $searchTerm);
+        }
+        $students = $studentsQuery->get();
+
+        return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject'));
     }
 }
