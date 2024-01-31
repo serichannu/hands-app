@@ -53,7 +53,11 @@ td {
     font-weight: bold;
     padding: 0;
 }
-#submitButton {
-    display: flex;
-    align-items: center;
+#studentTd {
+    background-color: #ededed;
+    text-align: left;
+    width: 40px;
+}
+th {
+    text-align: center;
 }
