@@ -5,7 +5,7 @@
         <form class="mb-3">
             <div class="d-flex align-items-center">
                 <!-- 教科選択 -->
-                <p class="me-2 mt-3">教科選択：</p>
+                <p class="mt-3">教科選択：</p>
                 <div class="me-2">
                     <select name="selectedSubject" id="subjectSelector" class="form-select">
                         <option value="">すべての教科</option>
@@ -16,6 +16,17 @@
                                 @endif>{{ $subject->name }}</option>
                         @endforeach
                     </select>
+                </div>
+
+                {{-- 期間選択 --}}
+                <div class="me-2" style="display: flex; align-items: center; white-space: nowrap;">
+                    <label for="startDate" class="me-1">開始日：</label>
+                    <input type="date" id="startDate" name="startDate" class="form-control" value="{{ $startDate }}">
+                </div>
+
+                <div class="me-2" style="display: flex; align-items: center; white-space: nowrap;">
+                    <label for="endDate" class="me-1">終了日：</label>
+                    <input type="date" id="endDate" name="endDate" class="form-control" value="{{ $endDate }}">
                 </div>
 
                 <!-- 検索ボタン -->
