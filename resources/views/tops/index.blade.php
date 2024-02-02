@@ -11,12 +11,12 @@
             <form class="d-flex align-items-center">
                 <select name="subject_id" id="subjectSelector" class="form-select">
                     <option value="">選択してください</option>
-                    @foreach ($subjects as $subject)
-                        <option value="{{ $subject->id }}"
-                            @if ($subject->id == $selectedSubjectId)
-                                selected
-                            @endif>{{ $subject->name }}</option>
-                    @endforeach
+                        @foreach ($subjects as $subject)
+                            <option value="{{ $subject->id }}"
+                                @if(isset($selectedSubjectId) && $selectedSubjectId === $subject->id)
+                                    selected
+                                @endif>{{ $subject->name }}</option>
+                        @endforeach
                 </select>
                 <button type="submit" class="btn btn-primary ms-1" id="submitButton">表示</button>
             </form>
