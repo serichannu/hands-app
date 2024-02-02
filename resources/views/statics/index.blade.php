@@ -39,11 +39,10 @@
                         @foreach ($subjects as $subject)
                             <td style="{{ $student->number % 2 == 0 ? 'background-color: #d1e0f9' : '' }}">
                                 @php
-                                    $foundCounter = $counterData->first(function ($counter) use ($student, $subject) {
-                                        return $counter->student_id == $student->id && $counter->subject_id == $subject->id;
-                                    });
-
-                                    $totalCount = $foundCounter ? $foundCounter->total_count : 0;
+                                    $totalCount = $counterData
+                                        ->where('student_id', $student->id)
+                                        ->where('subject_id', $subject->id)
+                                        ->sum('total_count');
                                 @endphp
 
                                 {{ $totalCount }}

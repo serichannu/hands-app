@@ -7,22 +7,28 @@ use App\Models\Counter;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class StaticsController extends Controller
 {
     public function index(Request $request) {
-        $counterData = Counter::select('subject_id', 'student_id', 'date', DB::raw('SUM(count) as total_count'))
-        ->groupBy('subject_id', 'student_id', 'date')
-        ->get();
-        $studentsQuery = Student::query();
+        $user = Auth::user();
         $subjects = Subject::all();
 
-        $searchTerm = $request->input('search');
         $selectedSubject = $request->input('selectedSubject');
-
-        if ($searchTerm) {
-            $studentsQuery->where('number', $searchTerm);
+        $counterData = Counter::select('subject_id', 'student_id', 'date', DB::raw('SUM(count) as total_count'))
+        ->whereHas('student', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->when($selectedSubject, function ($query) use ($selectedSubject) {
+            $query->where('subject_id', $selectedSubject);
+        })
+        ->groupBy('subject_id', 'student_id', 'date')
+        ->get();
+        $studentsQuery = Student::where('user_id', $user->id);
+        if ($request->has('search')) {
+            $studentsQuery->where('number', $request->input('search'));
         }
         $students = $studentsQuery->get();
 
