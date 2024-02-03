@@ -30,11 +30,11 @@
                 </div>
 
                 <!-- 検索ボタン -->
-                <button type="submit" class="btn btn-primary">検索</button>
+                <button type="submit" class="btn btn-secondary"><i class="fas fa-search"></i>検索</button>
             </div>
         </form>
 
-        <table class="table">
+        <table class="fas_table_colrowheader">
             <thead>
                 <tr>
                     <th>学生番号</th>
@@ -46,9 +46,9 @@
             <tbody>
                 @foreach ($students as $student)
                     <tr>
-                        <td id="studentTd" style="{{ $student->number % 2 == 0 ? 'background-color: #d1e0f9;' : '' }}">{{ $student->number }}</td>
+                        <td id="studentTd" style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5;' : '' }}">{{ $student->number }}</td>
                         @foreach ($subjects as $subject)
-                            <td style="{{ $student->number % 2 == 0 ? 'background-color: #d1e0f9' : '' }}">
+                            <td style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5' : '' }}">
                                 @php
                                     $totalCount = $counterData
                                         ->where('student_id', $student->id)

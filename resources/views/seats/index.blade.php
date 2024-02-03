@@ -29,7 +29,7 @@
                     <input type="number" class="form-control" id="columns" name="columns" required min="1" max="8">
                 </div>
             </div>
-            <button type="submit" class="btn btn-secondary mb-3">登録</button>
+            <button type="submit" class="btn btn-success mb-3"><i class="fas fa-plus"></i>登録</button>
         </form>
     </div>
 </div>

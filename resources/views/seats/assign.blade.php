@@ -23,7 +23,7 @@
                 @endfor
             </div>
 
-            <button type="submit" class="btn btn-secondary mb-3" id="assignBtn">登録</button>
+            <button type="submit" class="btn btn-success mb-3" id="assignBtn"><i class="fas fa-chair"></i>登録</button>
         </form>
     </div>
     <style>

@@ -46,18 +46,64 @@ td {
     font-size: 20px;
     font-weight: bold;
     padding: 0;
+    background-color: #3f60a1;
+    color: #fff;
 }
 #countDown {
     width: 50px;
     font-size: 20px;
     font-weight: bold;
     padding: 0;
+    background-color: #a64343;
+    color: #fff;
 }
 #studentTd {
-    background-color: #ededed;
     text-align: left;
     width: 40px;
 }
 th {
     text-align: center;
+}
+table.fas_table_colrowheader {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+table.fas_table_colrowheader th {
+    border: 1px solid #333;
+    padding: 5px;
+    font-weight: normal;
+    background: #355087;
+    color: #fff;
+    text-align: center;
+}
+table.fas_table_colrowheader th:before {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00c";
+    margin-right: 5px;
+}
+table.fas_table_colrowheader td {
+    border: 1px solid #999;
+    padding: 5px;
+    text-align: center;
+}
+table.fas_table_colrowheader td:first-child {
+    position: relative;
+    color: #355087;
+}
+table.fas_table_colrowheader td:first-child:before {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0da";
+    margin-right: 5px;
 }

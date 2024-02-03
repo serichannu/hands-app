@@ -18,7 +18,8 @@
                                 @endif>{{ $subject->name }}</option>
                         @endforeach
                 </select>
-                <button type="submit" class="btn btn-primary ms-1" id="submitButton">表示</button>
+                <button type="submit" class="btn btn-secondary ms-1" id="submitButton"><i class="fas fa-desktop"></i>
+                    表示</button>
             </form>
         </div>
     </div>
@@ -58,7 +59,7 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="increment">
-                                            <button class="btn btn-primary" id="countUp" type="submit">＋</button>
+                                            <button class="btn" id="countUp" type="submit">＋</button>
                                         </form>
 
                                         <span id="counter{{ $sequencedSeats[$seq]->student->id }}">
@@ -76,7 +77,7 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="decrement">
-                                            <button class="btn btn-danger" id="countDown" type="submit">－</button>
+                                            <button class="btn" id="countDown" type="submit">－</button>
                                         </form>
                                     </div>
                                 @endif
