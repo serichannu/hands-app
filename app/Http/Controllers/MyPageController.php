@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class MyPageController extends Controller
 {
     public function index() {
-        return view('mypage.index');
+        $user = Auth::user();
+        return view('mypage.index', compact('user'));
     }
 
-    public function update() {
-        return view('mypage.update');
-    }
 
     public function destroy() {
-        return view('mypage.destroy');
+        auth()->user()->delete();
+
+        return redirect()->route('auth.login')->with('success', '※アカウントが削除されました。');
     }
 }

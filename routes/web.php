@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeatController;
@@ -20,9 +21,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('auth.login');
+
 Route::middleware('auth')->group(function () {
     Route::controller(TopController::class)->group(function () {
         Route::get('/top', 'index')->name('tops.index');
@@ -42,22 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::controller(MyPageController::class)->group(function () {
         Route::get('top/mypage', 'index')->name('mypage.index');
-    //     Route::get('top/mypage/edit', 'update')->name('mypage.update');
-    //     Route::put('top/mypage/', '')->name('mypage.');
-
+        Route::delete('top/mypage/destroy', 'destroy')->name('mypage.destroy');
+    });
 });
-});
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
 
 require __DIR__.'/auth.php';
