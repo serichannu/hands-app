@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EvaluationCategory extends Model
 {
     use HasFactory;
-    public function evaluation() {
+    public function evaluations() {
         return $this->hasMany(Evaluation::class);
     }
 }
