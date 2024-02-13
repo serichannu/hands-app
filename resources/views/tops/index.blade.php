@@ -130,7 +130,9 @@
         });
 
         function updateHiddenFields(elementName, value) {
-            document.querySelector(elementName).value = value;
+            document.querySelectorAll(elementName).forEach(function(element) {
+                element.value = value;
+            });
         }
     </script>
     @endsection
