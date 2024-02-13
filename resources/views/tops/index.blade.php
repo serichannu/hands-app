@@ -59,6 +59,8 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="increment">
+                                            <input type="hidden" name="knowledge_skill" id="knowledgeSkill">
+                                            <input type="hidden" name="thinking_judgement_expression" id="thinkingJudgementExpression">
                                             <button class="btn" id="countUp" type="submit">＋</button>
                                         </form>
 
@@ -77,8 +79,26 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="decrement">
+                                            <input type="hidden" name="knowledge_skill" id="knowledgeSkill">
+                                            <input type="hidden" name="thinking_judgement_expression" id="thinkingJudgementExpression">
                                             <button class="btn" id="countDown" type="submit">－</button>
                                         </form>
+
+                                    {{-- 評価ボタン --}}
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <label class="form-check-label" for="flexRadioDefault1">知・技</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                    <label class="form-check-label" for="flexRadioDefault2">思・判・表</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endif
                             </td>
@@ -94,4 +114,19 @@
             </div>
         </div>
     @endif
+    <script>
+        document.querySelectorAll('input[name="flexRadioDefault"]').forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    updateHiddenFields(1);
+                }
+            });
+        });
+
+        function updateHiddenFields(value) {
+            document.getElementById('knowledgeSkill').value = value;
+            document.getElementById('thinkingJudgementExpression').value = value;
+        }
+
+    </script>
 @endsection
