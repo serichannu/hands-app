@@ -118,14 +118,19 @@
         document.querySelectorAll('input[name="flexRadioDefault"]').forEach(function(radio) {
             radio.addEventListener('change', function() {
                 if (this.checked) {
-                    updateHiddenFields(1);
+                    if (this.id === 'flexRadioDefault1') {
+                        updateHiddenFields('knowledgeSkill', 1);
+                        updateHiddenFields('thinkingJudgementExpression', 0);
+                    } else if (this.id === 'flexRadioDefault2') {
+                        updateHiddenFields('knowledgeSkill', 0);
+                        updateHiddenFields('thinkingJudgementExpression', 1);
+                    }
                 }
             });
         });
 
-        function updateHiddenFields(value) {
-            document.getElementById('knowledgeSkill').value = value;
-            document.getElementById('thinkingJudgementExpression').value = value;
+        function updateHiddenFields(elementId, value) {
+            document.getElementById(elementId).value = value;
         }
 
     </script>
