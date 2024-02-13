@@ -59,8 +59,8 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="increment">
-                                            <input type="hidden" name="knowledge_skill" id="knowledgeSkill">
-                                            <input type="hidden" name="thinking_judgement_expression" id="thinkingJudgementExpression">
+                                            <input type="hidden" name="knowledge_skill" class="knowledgeSkill">
+                                            <input type="hidden" name="thinking_judgement_expression" class="thinkingJudgementExpression">
                                             <button class="btn" id="countUp" type="submit">＋</button>
                                         </form>
 
@@ -79,8 +79,8 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="decrement">
-                                            <input type="hidden" name="knowledge_skill" id="knowledgeSkill">
-                                            <input type="hidden" name="thinking_judgement_expression" id="thinkingJudgementExpression">
+                                            <input type="hidden" name="knowledge_skill" class="knowledgeSkill">
+                                            <input type="hidden" name="thinking_judgement_expression" class="thinkingJudgementExpression">
                                             <button class="btn" id="countDown" type="submit">－</button>
                                         </form>
 
@@ -119,19 +119,18 @@
             radio.addEventListener('change', function() {
                 if (this.checked) {
                     if (this.id === 'flexRadioDefault1') {
-                        updateHiddenFields('knowledgeSkill', 1);
-                        updateHiddenFields('thinkingJudgementExpression', 0);
+                        updateHiddenFields('.knowledgeSkill', 1);
+                        updateHiddenFields('.thinkingJudgementExpression', 0);
                     } else if (this.id === 'flexRadioDefault2') {
-                        updateHiddenFields('knowledgeSkill', 0);
-                        updateHiddenFields('thinkingJudgementExpression', 1);
+                        updateHiddenFields('.knowledgeSkill', 0);
+                        updateHiddenFields('.thinkingJudgementExpression', 1);
                     }
                 }
             });
         });
 
-        function updateHiddenFields(elementId, value) {
-            document.getElementById(elementId).value = value;
+        function updateHiddenFields(elementName, value) {
+            document.querySelector(elementName).value = value;
         }
-
     </script>
-@endsection
+    @endsection
