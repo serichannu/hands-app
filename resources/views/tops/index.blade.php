@@ -85,18 +85,17 @@
                                         </form>
 
                                     {{-- 評価ボタン --}}
-                                        <div class="row">
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                    <label class="form-check-label" for="flexRadioDefault1">知・技</label>
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault_{{ $sequencedSeats[$seq]->student->id }}" id="flexRadioDefault1">
+                                                <label class="form-check-label" for="flexRadioDefault1_{{ $sequencedSeats[$seq]->student->id }}">知・技</label>
                                             </div>
-                                            <div class="col-auto">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                                    <label class="form-check-label" for="flexRadioDefault2">思・判・表</label>
-                                                </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault_{{ $sequencedSeats[$seq]->student->id }}" id="flexRadioDefault2">
+                                                <label class="form-check-label" for="flexRadioDefault2_{{ $sequencedSeats[$seq]->student->id }}">思・判・表</label>
                                             </div>
                                         </div>
                                     </div>
@@ -114,25 +113,23 @@
             </div>
         </div>
     @endif
-    <script>
-        document.querySelectorAll('input[name="flexRadioDefault"]').forEach(function(radio) {
-            radio.addEventListener('change', function() {
-                if (this.checked) {
-                    if (this.id === 'flexRadioDefault1') {
-                        updateHiddenFields('.knowledgeSkill', 1);
-                        updateHiddenFields('.thinkingJudgementExpression', 0);
-                    } else if (this.id === 'flexRadioDefault2') {
-                        updateHiddenFields('.knowledgeSkill', 0);
-                        updateHiddenFields('.thinkingJudgementExpression', 1);
-                    }
-                }
-            });
-        });
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('input[type="radio"]').click(function() {
+        // 他の<td>内のラジオボタンを選択解除
+        $('input[type="radio"]').not(this).prop('checked', false);
 
-        function updateHiddenFields(elementName, value) {
-            document.querySelectorAll(elementName).forEach(function(element) {
-                element.value = value;
-            });
+        let parent = $(this).closest('td');
+        $('.thinkingJudgementExpression').val(0);
+        $('.knowledgeSkill').val(0);
+
+        if ($(this).is('#flexRadioDefault1')) {
+            parent.find('.knowledgeSkill').val(1);
+        } else if ($(this).is('#flexRadioDefault2')) {
+            parent.find('.thinkingJudgementExpression').val(1);
         }
-    </script>
-    @endsection
+    });
+});
+</script>
+@endsection
