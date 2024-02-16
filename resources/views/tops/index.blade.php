@@ -59,8 +59,7 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="increment">
-                                            <input type="hidden" name="knowledge_skill" class="knowledgeSkill">
-                                            <input type="hidden" name="thinking_judgement_expression" class="thinkingJudgementExpression">
+                                            <input type="hidden" name="evaluation_category_id" class="evaluation_category_id">
                                             <button class="btn" id="countUp" type="submit">＋</button>
                                         </form>
 
@@ -79,8 +78,7 @@
                                             <input type="hidden" name="student_id" value="{{ $sequencedSeats[$seq]->student->id }}">
                                             <input type="hidden" name="subject_id" value="{{ $selectedSubjectId }}">
                                             <input type="hidden" name="type" value="decrement">
-                                            <input type="hidden" name="knowledge_skill" class="knowledgeSkill">
-                                            <input type="hidden" name="thinking_judgement_expression" class="thinkingJudgementExpression">
+                                            <input type="hidden" name="evaluation_category_id" class="evaluation_category_id">
                                             <button class="btn" id="countDown" type="submit">－</button>
                                         </form>
 
@@ -88,14 +86,14 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault_{{ $sequencedSeats[$seq]->student->id }}" id="flexRadioDefault1">
-                                                <label class="form-check-label" for="flexRadioDefault1_{{ $sequencedSeats[$seq]->student->id }}">知・技</label>
+                                                <input class="form-check-input" type="radio" id="knowledgeSkill_{{ $sequencedSeats[$seq]->student->id }}" class="knowledgeSkill">
+                                                <label class="form-check-label" for="knowledgeSkill_{{ $sequencedSeats[$seq]->student->id }}">知・技</label>
                                             </div>
                                         </div>
                                         <div class="col-auto">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault_{{ $sequencedSeats[$seq]->student->id }}" id="flexRadioDefault2">
-                                                <label class="form-check-label" for="flexRadioDefault2_{{ $sequencedSeats[$seq]->student->id }}">思・判・表</label>
+                                                <input class="form-check-input" type="radio" id="thinkingJudgementExpression_{{ $sequencedSeats[$seq]->student->id }}" class="thinkingJudgementExpression">
+                                                <label class="form-check-label" for="thinkingJudgementExpression_{{ $sequencedSeats[$seq]->student->id }}">思・判・表</label>
                                             </div>
                                         </div>
                                     </div>
@@ -121,13 +119,14 @@ $(document).ready(function() {
         $('input[type="radio"]').not(this).prop('checked', false);
 
         let parent = $(this).closest('td');
-        $('.thinkingJudgementExpression').val(0);
-        $('.knowledgeSkill').val(0);
-
-        if ($(this).is('#flexRadioDefault1')) {
-            parent.find('.knowledgeSkill').val(1);
-        } else if ($(this).is('#flexRadioDefault2')) {
-            parent.find('.thinkingJudgementExpression').val(1);
+        $('.evaluation_category_id').val(0);
+console.log(parent.find('.evaluation_category_id'));
+        if ($(this).is('.knowledgeSkill')) {
+            parent.find('.evaluation_category_id').each(function() {
+                $(this).val({{ $knowledgeSkillCategory->id }});
+            });
+        } else if ($(this).is('.thinkingJudgementExpression')) {
+            parent.find('.evaluation_category_id').val({{ $thinkingJudgementExpressionCategory->id }});
         }
     });
 });
