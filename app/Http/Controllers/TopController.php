@@ -69,7 +69,7 @@ class TopController extends Controller
         $subjectId = $request->input('subject_id');
         $type = $request->input('type');
         $evaluationCategoryId = $request->input('evaluation_category_id');
-dd($request->all());
+// dd($request->all());
 
         $today = Carbon::today();
         $date = $today->format('Y-m-d');
@@ -79,7 +79,7 @@ dd($request->all());
             ['count' => $countValue]
         );
 // dd($counter);
-dd($evaluationCategoryId);
+// dd($evaluationCategoryId);
 
         if ($evaluationCategoryId) {
             Evaluation::updateOrCreate(

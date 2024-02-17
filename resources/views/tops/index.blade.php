@@ -86,13 +86,13 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="knowledgeSkill_{{ $sequencedSeats[$seq]->student->id }}" class="knowledgeSkill">
+                                                <input class="form-check-input knowledgeSkill" type="radio" id="knowledgeSkill_{{ $sequencedSeats[$seq]->student->id }}">
                                                 <label class="form-check-label" for="knowledgeSkill_{{ $sequencedSeats[$seq]->student->id }}">知・技</label>
                                             </div>
                                         </div>
                                         <div class="col-auto">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" id="thinkingJudgementExpression_{{ $sequencedSeats[$seq]->student->id }}" class="thinkingJudgementExpression">
+                                                <input class="form-check-input thinkingJudgementExpression" type="radio" id="thinkingJudgementExpression_{{ $sequencedSeats[$seq]->student->id }}">
                                                 <label class="form-check-label" for="thinkingJudgementExpression_{{ $sequencedSeats[$seq]->student->id }}">思・判・表</label>
                                             </div>
                                         </div>
