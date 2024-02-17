@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
     use HasFactory;
+    protected $fillable = ['counter_id', 'evaluation_category_id', 'count'];
     public function counter() {
         return $this->belongsTo(Counter::class);
     }

@@ -84,7 +84,7 @@ class TopController extends Controller
         if ($evaluationCategoryId) {
             Evaluation::updateOrCreate(
                 ['counter_id' => $counter->id, 'evaluation_category_id' => $evaluationCategoryId],
-                ['count' => DB::raw('count + 1')],
+                ['count' => $countValue],
             );
         }
 

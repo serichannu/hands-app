@@ -119,15 +119,20 @@ $(document).ready(function() {
         $('input[type="radio"]').not(this).prop('checked', false);
 
         let parent = $(this).closest('td');
-        $('.evaluation_category_id').val(0);
-console.log(parent.find('.evaluation_category_id'));
+
+// console.log(parent.find('.evaluation_category_id'));
         if ($(this).is('.knowledgeSkill')) {
             parent.find('.evaluation_category_id').each(function() {
                 $(this).val({{ $knowledgeSkillCategory->id }});
             });
+            // console.log("knowledgeSkill処理済み");
+
         } else if ($(this).is('.thinkingJudgementExpression')) {
             parent.find('.evaluation_category_id').val({{ $thinkingJudgementExpressionCategory->id }});
+            // console.log("thinkingJudgementExpression処理済み");
+
         }
+
     });
 });
 </script>
