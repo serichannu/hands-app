@@ -45,23 +45,24 @@
             </thead>
             <tbody>
                 @foreach ($students as $student)
-                    <tr>
-                        <td id="studentTd" style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5;' : '' }}">{{ $student->number }}</td>
-                        @foreach ($subjects as $subject)
-                            <td style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5' : '' }}">
-                                @php
-                                    $totalCount = $counterData
-                                        ->where('student_id', $student->id)
-                                        ->where('subject_id', $subject->id)
-                                        ->sum('total_count');
-                                @endphp
+                <tr>
+                    <td id="studentTd" style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5;' : '' }}">{{ $student->number }}</td>
+                    @foreach ($subjects as $subject)
+                        <td style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5' : '' }}">
+                            @php
+                                $totalCount = $counterData
+                                    ->where('student_id', $student->id)
+                                    ->where('subject_id', $subject->id)
+                                    ->sum('total_count');
+                            @endphp
 
-                                {{ $totalCount }}
-                            </td>
-                        @endforeach
-                    </tr>
-                @endforeach
-            </tbody>
+                            {{ $totalCount }}
+                            {{ $evaluationCount }}
+                        </td>
+                    @endforeach
+                </tr>
+            @endforeach
+                        </tbody>
         </table>
     </div>
 @endsection

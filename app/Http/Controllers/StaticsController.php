@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Counter;
+use App\Models\Evaluation;
+use App\Models\EvaluationCategory;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Http\Request;
@@ -40,6 +42,15 @@ class StaticsController extends Controller
         }
         $students = $studentsQuery->get();
 
-        return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate'));
+ $evaluationCount = 0;
+
+        foreach ($students as $student) {
+            foreach ($subjects as $subject) {
+                $evaluationCount += Evaluation::whereHas('counter', function ($query) use ($student, $subject) {
+                    $query->where('student_id', $student->id)->where('subject_id', $subject->id);
+                })->count();
+            }
+        }
+                return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate', 'evaluationCount'));
     }
 }
