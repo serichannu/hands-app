@@ -57,7 +57,7 @@
                             @endphp
 
                             {{ $totalCount }}
-                            {{ $evaluationCount }}
+                            {{-- {{ $evaluationCount }} --}}
                         </td>
                     @endforeach
                 </tr>

@@ -42,15 +42,9 @@ class StaticsController extends Controller
         }
         $students = $studentsQuery->get();
 
- $evaluationCount = 0;
+        $knowledgeSkillCategory = EvaluationCategory::where('name', '=', '知・技' )->first();
+        $thinkingJudgementExpressionCategory = EvaluationCategory::where('name', '=', '思・判・表' )->first();
 
-        foreach ($students as $student) {
-            foreach ($subjects as $subject) {
-                $evaluationCount += Evaluation::whereHas('counter', function ($query) use ($student, $subject) {
-                    $query->where('student_id', $student->id)->where('subject_id', $subject->id);
-                })->count();
-            }
-        }
-                return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate', 'evaluationCount'));
+        return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate'));
     }
 }
