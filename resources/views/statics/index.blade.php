@@ -50,15 +50,26 @@
                     @foreach ($subjects as $subject)
                         <td style="{{ $student->number % 2 == 0 ? 'background-color: #f5f5f5' : '' }}">
                             @php
-                            dd($counterData[0]);
                                 $totalCount = $counterData
                                     ->where('student_id', $student->id)
                                     ->where('subject_id', $subject->id)
                                     ->sum('total_count');
-
+                                $temp = $evaluationData
+                                    ->where('student_id', $student->id)
+                                    ->where('subject_id', $subject->id);
+                                $result = [];
+                                foreach ($temp as $t) {
+                                    $evaluations = $t->evaluations;
+                                    foreach ($evaluations as $evaluation) {
+                                        $result[$evaluation->evaluation_category->name] = $evaluation->count;
+                                    }
+                                }
                             @endphp
 
                             {{ $totalCount }}
+                            @foreach ($result as $name => $count)
+                                <br>{{ $name.":".$count }}
+                            @endforeach
                         </td>
                     @endforeach
                 </tr>

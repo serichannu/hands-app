@@ -36,15 +36,27 @@ class StaticsController extends Controller
         ->groupBy('subject_id', 'student_id')
         ->get();
 
+        $evaluationData = Counter::select('id', 'subject_id', 'student_id')
+        ->whereHas('student', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })
+        ->when($selectedSubject, function ($query) use ($selectedSubject) {
+            $query->where('subject_id', $selectedSubject);
+        })
+        ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
+            $query->whereBetween('date', [$startDate, $endDate]);
+        })
+        ->get();
+
         $studentsQuery = Student::where('user_id', $user->id);
         if ($request->has('search')) {
             $studentsQuery->where('number', $request->input('search'));
         }
         $students = $studentsQuery->get();
 
-        $knowledgeSkillCategory = EvaluationCategory::where('name', '=', '知・技' )->first();
-        $thinkingJudgementExpressionCategory = EvaluationCategory::where('name', '=', '思・判・表' )->first();
 
-        return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate'));
+        return view('statics.index', compact('counterData', 'students', 'subjects', 'selectedSubject', 'startDate', 'endDate', 'evaluationData'));
     }
+
+
 }
