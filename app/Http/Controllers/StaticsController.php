@@ -23,7 +23,7 @@ class StaticsController extends Controller
         $startDate = $request->input('startDate');
         $endDate = $request->input('endDate');
 
-        $counterData = Counter::select('subject_id', 'student_id', 'date', DB::raw('SUM(count) as total_count'))
+        $counterData = Counter::select('subject_id', 'student_id', DB::raw('SUM(count) as total_count'))
         ->whereHas('student', function ($query) use ($user) {
             $query->where('user_id', $user->id);
         })
@@ -33,7 +33,7 @@ class StaticsController extends Controller
         ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
             $query->whereBetween('date', [$startDate, $endDate]);
         })
-        ->groupBy('subject_id', 'student_id', 'date')
+        ->groupBy('subject_id', 'student_id')
         ->get();
 
         $studentsQuery = Student::where('user_id', $user->id);
